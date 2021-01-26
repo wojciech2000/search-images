@@ -1,3 +1,6 @@
+html {
+  background-color: whitesmoke; }
+
 * {
   margin: 0;
   padding: 0;
@@ -23,10 +26,10 @@ h1 {
       font-size: 56px; } }
 
 h2 {
-  font-size: 26px; }
+  font-size: 50px; }
   @media (min-width: 768px) {
     h2 {
-      font-size: 36px; } }
+      font-size: 60px; } }
 
 h3 {
   font-size: 22px; }
@@ -164,7 +167,8 @@ h3 {
     width: 100%;
     border-radius: 3px;
     max-height: 250px;
-    overflow: auto; }
+    overflow: auto;
+    z-index: 200; }
     .search .found-images--result,
     .search .found-images--result--result {
       top: 60px;
@@ -203,6 +207,36 @@ h3 {
       width: 700px; } }
 
 .result {
-  width: 100vw;
+  width: 80vw;
   min-height: 100vh;
-  background-color: whitesmoke; }
+  margin: 0 auto; }
+  .result__title {
+    margin-top: 20px;
+    font-family: "Lato", sans-serif; }
+  .result__related-tags {
+    margin-top: 20px;
+    max-width: 100%;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    display: flex; }
+  .result .realted-tags-fadeout-effect {
+    position: absolute;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 10;
+    box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset;
+    -webkit-box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset;
+    -moz-box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset; }
+  .result__related-tags-tag {
+    margin: 0 5px;
+    border-radius: 5px;
+    min-width: 150px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; }
+    .result__related-tags-tag:first-child {
+      margin-left: 0; }
