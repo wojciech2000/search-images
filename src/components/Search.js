@@ -5,11 +5,28 @@ import {IoMdClose} from "react-icons/io";
 
 import {unsplashURL, key, searchTheme} from "../utils/utils";
 
-export default function App({props, theme, result}) {
+export default function App({props, theme, result, trending = ""}) {
   const [keyWord, setKeyWord] = useState(result || "");
   const [foundImages, setFountImages] = useState([]);
+
   //dont show dropbox after switching to result component
   const [isResult, setIsResult] = useState(result ? true : false);
+
+  useEffect(() => {
+    axios
+      .get(unsplashURL + trending, {
+        headers: {
+          Authorization: key,
+        },
+      })
+      .then(res => {
+        setIsResult(true);
+        setFountImages([]);
+        res.data.results.length &&
+          props.history.push({pathname: `/result/${trending}`, url: unsplashURL + trending});
+      })
+      .catch(err => console.log(err));
+  }, [trending]);
 
   useEffect(() => {
     keyWord.length <= 3 && setFountImages([]);
@@ -22,7 +39,9 @@ export default function App({props, theme, result}) {
           },
         })
         .then(res => {
-          const descriptions = res.data.results.map(image => image.description || image.alt_description);
+          const descriptions = res.data.results.map(
+            image => image.description || image.alt_description,
+          );
           setFountImages(descriptions);
         })
         .catch(err => {
@@ -50,7 +69,8 @@ export default function App({props, theme, result}) {
         .then(res => {
           setIsResult(true);
           setFountImages([]);
-          res.data.results.length && props.history.push({pathname: `/result/${keyWord}`, url: unsplashURL + keyWord});
+          res.data.results.length &&
+            props.history.push({pathname: `/result/${keyWord}`, url: unsplashURL + keyWord});
         })
         .catch(err => console.log(err));
     }
@@ -58,21 +78,40 @@ export default function App({props, theme, result}) {
 
   return (
     <main className="search">
-      <form onSubmit={handleOnSubmit} className={theme === searchTheme.home ? "search__form" : "search__form--result"}>
-        <div className={theme === searchTheme.home ? "search__form-input" : "search__form-input--result"}>
-          <label htmlFor="search" className={theme === searchTheme.home ? "search__search-icon" : "search__search-icon--result"}>
+      <form
+        onSubmit={handleOnSubmit}
+        className={theme === searchTheme.home ? "search__form" : "search__form--result"}
+      >
+        <div
+          className={
+            theme === searchTheme.home ? "search__form-input" : "search__form-input--result"
+          }
+        >
+          <label
+            htmlFor="search"
+            className={
+              theme === searchTheme.home ? "search__search-icon" : "search__search-icon--result"
+            }
+          >
             <BsSearch />
           </label>
           <input
             type="text"
             id="search"
             placeholder="Search free high-resolution photos"
-            className={theme === searchTheme.home ? "search__search-input" : "search__search-input--result"}
+            className={
+              theme === searchTheme.home ? "search__search-input" : "search__search-input--result"
+            }
             value={keyWord}
             onChange={handleOnChange}
           />
           {keyWord.length > 0 && (
-            <div className={theme === searchTheme.home ? "search__search-erase" : "search__search-erase--result"} onClick={() => setKeyWord("")}>
+            <div
+              className={
+                theme === searchTheme.home ? "search__search-erase" : "search__search-erase--result"
+              }
+              onClick={() => setKeyWord("")}
+            >
               <IoMdClose />
             </div>
           )}
@@ -82,12 +121,28 @@ export default function App({props, theme, result}) {
             ? ""
             : foundImages.length
             ? foundImages.map((image, id) => (
-                <div key={id} className={theme === searchTheme.home ? "found-images__image" : "found-images__image--result"} onClick={handleOnSubmit}>
+                <div
+                  key={id}
+                  className={
+                    theme === searchTheme.home
+                      ? "found-images__image"
+                      : "found-images__image--result"
+                  }
+                  onClick={handleOnSubmit}
+                >
                   {image}
                 </div>
               ))
             : keyWord.length >= 3 && (
-                <span className={theme === searchTheme.home ? "found-images__error" : "found-images__error--result"}>Pictures didn't found</span>
+                <span
+                  className={
+                    theme === searchTheme.home
+                      ? "found-images__error"
+                      : "found-images__error--result"
+                  }
+                >
+                  Pictures didn't found
+                </span>
               )}
         </div>
       </form>

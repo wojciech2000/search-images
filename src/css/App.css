@@ -62,6 +62,17 @@ h2 {
     margin-bottom: 20px; }
   .home__aside {
     margin-bottom: 20px; }
+  .home__trendings {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px; }
+  .home__trending {
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 10px; }
   @media (min-width: 768px) {
     .home__wrapper {
       margin: 0 0 300px 0;
@@ -231,7 +242,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px; }
+    font-size: 14px;
+    cursor: pointer; }
     .result__related-tags-tag:first-child {
       margin-left: 0; }
 

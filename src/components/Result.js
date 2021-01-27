@@ -8,6 +8,7 @@ import Images from "./Images";
 export default function Result(props) {
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
+  const [trending, setTrending] = useState("");
 
   useEffect(() => {
     axios
@@ -20,6 +21,7 @@ export default function Result(props) {
         //some tags might repeat
         const allTags = [];
         res.data.results.map(image => image.tags.map(tag => allTags.push(tag.title)));
+        console.log(res);
 
         const uniqueTags = Array.from(new Set(allTags));
         const shuffleTags = uniqueTags.sort(() => Math.random() - 0.5);
@@ -31,13 +33,22 @@ export default function Result(props) {
 
   return (
     <div className="result">
-      <Search props={props} theme={searchTheme.result} result={props.match.params.keyWord} />
+      <Search
+        props={props}
+        theme={searchTheme.result}
+        result={props.match.params.keyWord}
+        trending={trending}
+      />
 
       <h2 className="result__title">{props.match.params.keyWord}</h2>
       <div className="result__related-tags">
         {tags.length > 0 &&
           tags.map((tag, id) => (
-            <span className="result__related-tags-tag" key={id}>
+            <span
+              className="result__related-tags-tag"
+              key={id}
+              onClick={e => setTrending(e.target.textContent)}
+            >
               {tag}
             </span>
           ))}

@@ -2,7 +2,7 @@ import React, {Fragment, useState} from "react";
 
 import ImageModal from "./ImageModal";
 
-export default function Images({images, props}) {
+export default function Images({images}) {
   const [imageId, setImageId] = useState("");
 
   return (
@@ -11,7 +11,11 @@ export default function Images({images, props}) {
         {images.length > 0 &&
           images.map((image, id) => (
             <section key={id} className="image" onClick={() => setImageId(image.id)}>
-              <img src={image.urls.regular} alt={image.alt_description} className="image__picture" />
+              <img
+                src={image.urls.regular}
+                alt={image.alt_description}
+                className="image__picture"
+              />
               <h3 className="image__title">{image.description || image.alt_description}</h3>
               <div className="image__tags">
                 {image.tags.map(({title}, id) => (
