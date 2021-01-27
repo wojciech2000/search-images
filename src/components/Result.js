@@ -21,7 +21,6 @@ export default function Result(props) {
         //some tags might repeat
         const allTags = [];
         res.data.results.map(image => image.tags.map(tag => allTags.push(tag.title)));
-        console.log(res);
 
         const uniqueTags = Array.from(new Set(allTags));
         const shuffleTags = uniqueTags.sort(() => Math.random() - 0.5);
@@ -33,12 +32,7 @@ export default function Result(props) {
 
   return (
     <div className="result">
-      <Search
-        props={props}
-        theme={searchTheme.result}
-        result={props.match.params.keyWord}
-        trending={trending}
-      />
+      <Search props={props} theme={searchTheme.result} trending={trending} />
 
       <h2 className="result__title">{props.match.params.keyWord}</h2>
       <div className="result__related-tags">

@@ -12,8 +12,6 @@ export default function Imagemodal({id, setImageId}) {
   const [imageInfo, setImageInfo] = useState({});
 
   useEffect(() => {
-    console.log(id);
-
     if (id.length) {
       axios(photoURL + id, {
         headers: {

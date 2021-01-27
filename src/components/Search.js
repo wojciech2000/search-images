@@ -1,16 +1,15 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {BsSearch} from "react-icons/bs";
 import {IoMdClose} from "react-icons/io";
 
 import {unsplashURL, key, searchTheme} from "../utils/utils";
 
-export default function App({props, theme, result, trending = ""}) {
-  const [keyWord, setKeyWord] = useState(result || "");
+export default function App({props, theme, trending = ""}) {
+  const [keyWord, setKeyWord] = useState("");
   const [foundImages, setFountImages] = useState([]);
 
-  //dont show dropbox after switching to result component
-  const [isResult, setIsResult] = useState(result ? true : false);
+  const search = useRef();
 
   useEffect(() => {
     axios
@@ -20,7 +19,6 @@ export default function App({props, theme, result, trending = ""}) {
         },
       })
       .then(res => {
-        setIsResult(true);
         setFountImages([]);
         res.data.results.length &&
           props.history.push({pathname: `/result/${trending}`, url: unsplashURL + trending});
@@ -52,7 +50,6 @@ export default function App({props, theme, result, trending = ""}) {
   }, [keyWord]);
 
   const handleOnChange = e => {
-    isResult && setIsResult(false);
     setKeyWord(e.target.value);
   };
 
@@ -67,7 +64,8 @@ export default function App({props, theme, result, trending = ""}) {
           },
         })
         .then(res => {
-          setIsResult(true);
+          search.current.blur();
+          setKeyWord("");
           setFountImages([]);
           res.data.results.length &&
             props.history.push({pathname: `/result/${keyWord}`, url: unsplashURL + keyWord});
@@ -96,6 +94,7 @@ export default function App({props, theme, result, trending = ""}) {
             <BsSearch />
           </label>
           <input
+            ref={search}
             type="text"
             id="search"
             placeholder="Search free high-resolution photos"
@@ -117,9 +116,7 @@ export default function App({props, theme, result, trending = ""}) {
           )}
         </div>
         <div className={theme === searchTheme.home ? "found-images" : "found-images--result"}>
-          {isResult
-            ? ""
-            : foundImages.length
+          {foundImages.length
             ? foundImages.map((image, id) => (
                 <div
                   key={id}
