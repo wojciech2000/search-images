@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-import {key, searchTheme} from "../utils/utils";
+import {unsplashURL, key, searchTheme} from "../utils/utils";
 import Search from "./Search";
+import Images from "./Images";
 
 export default function Result(props) {
   const [tags, setTags] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     axios
-      .get(props.location.url, {
+      .get(unsplashURL + props.match.params.keyWord, {
         headers: {
           Authorization: key,
         },
@@ -20,7 +22,9 @@ export default function Result(props) {
         res.data.results.map(image => image.tags.map(tag => allTags.push(tag.title)));
 
         const uniqueTags = Array.from(new Set(allTags));
-        setTags(uniqueTags);
+        const shuffleTags = uniqueTags.sort(() => Math.random() - 0.5);
+        setTags(shuffleTags);
+        setImages(res.data.results);
       })
       .catch(err => console.log(err));
   }, [props]);
@@ -29,9 +33,7 @@ export default function Result(props) {
     <div className="result">
       <Search props={props} theme={searchTheme.result} result={props.match.params.keyWord} />
 
-      <h2 className="result__title" onClick={() => console.log(tags[4])}>
-        {props.match.params.keyWord}
-      </h2>
+      <h2 className="result__title">{props.match.params.keyWord}</h2>
       <div className="result__related-tags">
         {tags.length > 0 &&
           tags.map((tag, id) => (
@@ -41,6 +43,7 @@ export default function Result(props) {
           ))}
         <div className="realted-tags-fadeout-effect"></div>
       </div>
+      <Images images={images} />
     </div>
   );
 }

@@ -240,3 +240,35 @@ h3 {
     font-size: 14px; }
     .result__related-tags-tag:first-child {
       margin-left: 0; }
+
+.images {
+  columns: 1; }
+  .images .image {
+    width: 100%;
+    overflow: hidden;
+    break-inside: avoid;
+    padding: 40px 0; }
+    .images .image__picture {
+      width: 100%; }
+    .images .image__title {
+      margin-top: 10px;
+      font-size: 18px; }
+    .images .image__tags {
+      margin-top: 15px;
+      width: 100%; }
+    .images .image__tag {
+      margin: 0 10px;
+      padding: 5px 15px;
+      font-size: 14px;
+      background-color: #d6d6d6;
+      color: #4b4b4b;
+      border-radius: 3px;
+      white-space: nowrap; }
+      .images .image__tag:first-child {
+        margin-left: 0; }
+  @media (min-width: 768px) {
+    .images {
+      columns: 2; } }
+  @media (min-width: 1024px) {
+    .images {
+      columns: 3; } }
