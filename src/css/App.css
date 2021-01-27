@@ -226,9 +226,9 @@ h3 {
     width: 50px;
     height: 100%;
     z-index: 10;
-    box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset;
-    -webkit-box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset;
-    -moz-box-shadow: -30px 0 37px rgba(245, 245, 245, 0.8) inset; }
+    box-shadow: -50px 0 37px rgba(245, 245, 245, 0.8) inset;
+    -webkit-box-shadow: -50px 0 37px rgba(245, 245, 245, 0.8) inset;
+    -moz-box-shadow: -50px 0 37px rgba(245, 245, 245, 0.8) inset; }
   .result__related-tags-tag {
     margin: 0 5px;
     border-radius: 5px;
