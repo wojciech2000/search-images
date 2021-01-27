@@ -43,7 +43,7 @@ export default function Result(props) {
           ))}
         <div className="realted-tags-fadeout-effect"></div>
       </div>
-      <Images images={images} />
+      <Images images={images} props={props} />
     </div>
   );
 }

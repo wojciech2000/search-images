@@ -1,6 +1,7 @@
 $default-font: "Montserrat", sans-serif;
 $title-font: "Lato", sans-serif;
 $input-color-result: #e2e2e2;
+$option-color: #4d4c4c;
 
 html {
   background-color: whitesmoke;
@@ -45,13 +46,13 @@ h2 {
   }
 }
 
-h3 {
-  font-size: 22px;
+// h3 {
+//   font-size: 22px;
 
-  @media (min-width: 768px) {
-    font-size: 32px;
-  }
-}
+//   @media (min-width: 768px) {
+//     font-size: 32px;
+//   }
+// }
 
 * {
   font-size: 18px;
@@ -321,12 +322,18 @@ h3 {
 
 .images {
   columns: 1;
+  margin: 40px 0;
 
   .image {
     width: 100%;
     overflow: hidden;
     break-inside: avoid;
-    padding: 40px 0;
+    margin: 40px 0;
+    cursor: pointer;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     &__picture {
       width: 100%;
@@ -366,6 +373,204 @@ h3 {
   @media (min-width: 1024px) {
     & {
       columns: 3;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgba($color: #575757, $alpha: 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    max-width: 90%;
+    max-height: 90%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header-author {
+    display: flex;
+    align-items: center;
+
+    &-picture {
+      width: 35px;
+      border-radius: 50%;
+    }
+
+    &-data {
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    &-name {
+      font-size: 16px;
+    }
+
+    &-link {
+      font-size: 10px;
+      color: black;
+      width: fit-content;
+    }
+  }
+
+  &__header-user-actions {
+    display: flex;
+    flex-direction: column;
+
+    &-icons {
+      border: 1px solid #a09f9f;
+      padding: 3px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 25px;
+      color: $option-color;
+      transition: all 0.2s ease;
+      transition-property: color, border-color;
+
+      &:hover {
+        color: black;
+        border-color: black;
+      }
+    }
+
+    &-heart {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__image-container {
+    overflow: auto;
+    margin: 30px auto;
+    display: flex;
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-location {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &-icon {
+        margin-right: 10px;
+      }
+    }
+
+    &-options {
+      & > * {
+        border-radius: 3px;
+        width: 80px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border: 1px solid #a09f9f;
+        cursor: pointer;
+        color: $option-color;
+        transition: all 0.2s ease;
+        transition-property: color, border-color;
+        font-size: 14px;
+
+        &:hover {
+          color: black;
+          border-color: black;
+        }
+
+        &:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 540px) {
+    &__content {
+      max-width: 90%;
+      max-height: 90%;
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__header-author {
+      &-picture {
+        width: 55px;
+      }
+
+      &-name {
+        font-size: 18px;
+      }
+
+      &-link {
+        font-size: 12px;
+      }
+    }
+
+    &__header-user-actions {
+      flex-direction: row;
+      align-items: center;
+
+      &-icons {
+        padding: 1px 10px;
+        font-size: 45px;
+      }
+
+      &-heart {
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+    }
+
+    &__footer {
+      &-location {
+        font-size: 18px;
+      }
+
+      &-options {
+        display: flex;
+
+        & > * {
+          width: 90px;
+          height: 35px;
+          font-size: 16px;
+
+          &:first-child {
+            margin-right: 5px;
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 }
