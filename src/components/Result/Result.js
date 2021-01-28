@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-import {unsplashURL, key, searchTheme} from "../utils/utils";
-import Search from "./Search";
-import Images from "./Images";
+import {unsplashURL, key, searchTheme} from "../../utils/utils";
+import Search from "../Search/Search";
+import Images from "../Images/Images";
 
 export default function Result(props) {
   const [tags, setTags] = useState([]);

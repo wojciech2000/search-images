@@ -1,0 +1,57 @@
+.images {
+  columns: 1;
+  margin: 40px 0;
+
+  .image {
+    width: 100%;
+    overflow: hidden;
+    break-inside: avoid;
+    margin: 60px 0;
+    cursor: pointer;
+    padding-bottom: 10px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &__picture {
+      width: 100%;
+    }
+
+    &__title {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    &__tags {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    &__tag {
+      margin: 0 10px;
+      padding: 5px 15px;
+      font-size: 14px;
+      background-color: #d6d6d6;
+      color: #4b4b4b;
+      border-radius: 3px;
+      white-space: nowrap;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    & {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    & {
+      columns: 3;
+    }
+  }
+}

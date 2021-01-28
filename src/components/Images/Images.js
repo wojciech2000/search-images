@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 
-import ImageModal from "./ImageModal";
+import ImageModal from "../ImageModal/ImageModal";
 
 export default function Images({images}) {
   const [imageId, setImageId] = useState("");

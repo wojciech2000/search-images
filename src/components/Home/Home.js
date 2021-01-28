@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-import Search from "./Search";
-import {key, searchTheme} from "../utils/utils";
+import Search from "../Search/Search";
+import {key, searchTheme} from "../../utils/utils";
 
 export default function Home(props) {
   const [trendings, setTrendings] = useState([]);
@@ -41,7 +41,7 @@ export default function Home(props) {
         </header>
         <Search props={props} theme={searchTheme.home} trending={trending} />
         <aside className="home__trendings">
-          Trendings:
+          Trending:
           {trendings.length > 0 &&
             trendings.map((trending, id) => (
               <span

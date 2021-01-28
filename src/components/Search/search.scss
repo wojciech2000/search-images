@@ -1,0 +1,145 @@
+$input-color-result: #e2e2e2;
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    &--result {
+      width: 80%;
+      padding-top: 20px;
+    }
+  }
+
+  &__form-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+
+    &--result {
+      height: 40px;
+    }
+  }
+
+  &__search-icon {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: #5f5f5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px 0 0 3px;
+
+    &--result {
+      width: 40px;
+      height: 40px;
+      background-color: $input-color-result;
+      border-radius: 45% 0 0 45%;
+    }
+  }
+
+  &__search-input {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0 10px 10px;
+    font-size: 16px;
+
+    &--result {
+      height: 40px;
+      border-radius: 0 28px 28px 0;
+      background-color: $input-color-result;
+    }
+  }
+
+  &__search-erase {
+    width: 50px;
+    height: 50px;
+    color: #5f5f5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px 0 0 3px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &--result {
+      right: 0;
+      width: 40px;
+      height: 40px;
+      bottom: 0;
+      top: auto;
+    }
+  }
+
+  .found-images {
+    margin-top: 5px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    border-radius: 3px;
+    max-height: 250px;
+    overflow: auto;
+    z-index: 200;
+
+    &--result {
+      top: 60px;
+      background-color: #e2e2e2;
+      border-radius: 10px;
+
+      &::-webkit-scrollbar {
+        background-color: #ebebeb;
+        border-radius: 0 10px 10px 0;
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: black;
+        border-radius: 5px;
+      }
+    }
+
+    &__image,
+    &__image--result {
+      padding: 20px 25px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #ececec;
+      }
+    }
+
+    &__error,
+    &__error--result {
+      margin: auto;
+      padding: 0 15px;
+      line-height: 40px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &__form--result {
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    &__form--result {
+      width: 700px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.home {
+  min-width: 100vw;
+  min-height: 100vh;
+  background: url("../pictures/lagoon.jpg") no-repeat center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  &__wrapper {
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    border-radius: 3px;
+    margin: 0% 5% 250px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-family: $title-font;
+  }
+
+  &__aside {
+    margin-bottom: 20px;
+  }
+
+  &__trendings {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+  }
+
+  &__trending {
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 10px;
+    transition: $hover-link-transition;
+
+    &:hover {
+      color: $hover-link-color;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &__wrapper {
+      margin: 0 0 300px 0;
+      width: 700px;
+      background-color: transparent;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    &__wrapper {
+      width: 1000px;
+    }
+  }
+}

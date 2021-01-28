@@ -3,7 +3,7 @@ import React, {useEffect, useState, useRef} from "react";
 import {BsSearch} from "react-icons/bs";
 import {IoMdClose} from "react-icons/io";
 
-import {unsplashURL, key, searchTheme} from "../utils/utils";
+import {unsplashURL, key, searchTheme} from "../../utils/utils";
 
 export default function App({props, theme, trending = ""}) {
   const [keyWord, setKeyWord] = useState("");
@@ -11,19 +11,24 @@ export default function App({props, theme, trending = ""}) {
 
   const search = useRef();
 
-  useEffect(() => {
+  const unsplashRequest = keyWord => {
     axios
-      .get(unsplashURL + trending, {
+      .get(unsplashURL + keyWord, {
         headers: {
           Authorization: key,
         },
       })
       .then(res => {
+        setKeyWord("");
         setFountImages([]);
         res.data.results.length &&
-          props.history.push({pathname: `/result/${trending}`, url: unsplashURL + trending});
+          props.history.push({pathname: `/result/${keyWord}`, url: unsplashURL + keyWord});
       })
       .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    unsplashRequest(trending);
   }, [trending]);
 
   useEffect(() => {
@@ -57,20 +62,7 @@ export default function App({props, theme, trending = ""}) {
     e.preventDefault();
 
     if (foundImages.length) {
-      axios
-        .get(unsplashURL + keyWord, {
-          headers: {
-            Authorization: key,
-          },
-        })
-        .then(res => {
-          search.current.blur();
-          setKeyWord("");
-          setFountImages([]);
-          res.data.results.length &&
-            props.history.push({pathname: `/result/${keyWord}`, url: unsplashURL + keyWord});
-        })
-        .catch(err => console.log(err));
+      unsplashRequest(keyWord);
     }
   };
 
@@ -78,17 +70,23 @@ export default function App({props, theme, trending = ""}) {
     <main className="search">
       <form
         onSubmit={handleOnSubmit}
-        className={theme === searchTheme.home ? "search__form" : "search__form--result"}
+        className={
+          theme === searchTheme.home ? "search__form" : "search__form search__form--result"
+        }
       >
         <div
           className={
-            theme === searchTheme.home ? "search__form-input" : "search__form-input--result"
+            theme === searchTheme.home
+              ? "search__form-input"
+              : "search__form-input search__form-input--result"
           }
         >
           <label
             htmlFor="search"
             className={
-              theme === searchTheme.home ? "search__search-icon" : "search__search-icon--result"
+              theme === searchTheme.home
+                ? "search__search-icon"
+                : "search__search-icon search__search-icon--result"
             }
           >
             <BsSearch />
@@ -99,7 +97,9 @@ export default function App({props, theme, trending = ""}) {
             id="search"
             placeholder="Search free high-resolution photos"
             className={
-              theme === searchTheme.home ? "search__search-input" : "search__search-input--result"
+              theme === searchTheme.home
+                ? "search__search-input"
+                : "search__search-input search__search-input--result"
             }
             value={keyWord}
             onChange={handleOnChange}
@@ -107,7 +107,9 @@ export default function App({props, theme, trending = ""}) {
           {keyWord.length > 0 && (
             <div
               className={
-                theme === searchTheme.home ? "search__search-erase" : "search__search-erase--result"
+                theme === searchTheme.home
+                  ? "search__search-erase"
+                  : "search__search-erase search__search-erase--result"
               }
               onClick={() => setKeyWord("")}
             >
@@ -115,7 +117,11 @@ export default function App({props, theme, trending = ""}) {
             </div>
           )}
         </div>
-        <div className={theme === searchTheme.home ? "found-images" : "found-images--result"}>
+        <div
+          className={
+            theme === searchTheme.home ? "found-images" : "found-images found-images--result"
+          }
+        >
           {foundImages.length
             ? foundImages.map((image, id) => (
                 <div
@@ -123,7 +129,7 @@ export default function App({props, theme, trending = ""}) {
                   className={
                     theme === searchTheme.home
                       ? "found-images__image"
-                      : "found-images__image--result"
+                      : "found-images__image found-images__image--result"
                   }
                   onClick={handleOnSubmit}
                 >
@@ -135,7 +141,7 @@ export default function App({props, theme, trending = ""}) {
                   className={
                     theme === searchTheme.home
                       ? "found-images__error"
-                      : "found-images__error--result"
+                      : "found-images__error found-images__error--result"
                   }
                 >
                   Pictures didn't found

@@ -6,7 +6,7 @@ import {GoLocation} from "react-icons/go";
 import {IoMdShareAlt} from "react-icons/io";
 import {RiInformationFill} from "react-icons/ri";
 
-import {photoURL, key, unsplash} from "../utils/utils";
+import {photoURL, key, unsplash} from "../../utils/utils";
 
 export default function Imagemodal({id, setImageId}) {
   const [imageInfo, setImageInfo] = useState({});

@@ -1,8 +1,8 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import Home from "./components/Home";
-import Result from "./components/Result";
+import Home from "./components/Home/Home";
+import Result from "./components/Result/Result";
 
 export default function App() {
   return (
