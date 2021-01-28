@@ -60,6 +60,7 @@ export default function App({props, theme, trending = ""}) {
 
   const handleOnSubmit = e => {
     e.preventDefault();
+    search.current.blur();
 
     if (foundImages.length) {
       unsplashRequest(keyWord);

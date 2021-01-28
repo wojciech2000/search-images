@@ -16,7 +16,6 @@ export default function Images({images}) {
                 alt={image.alt_description}
                 className="image__picture"
               />
-              <h3 className="image__title">{image.description || image.alt_description}</h3>
               <div className="image__tags">
                 {image.tags.map(({title}, id) => (
                   <span key={id} className="image__tag">

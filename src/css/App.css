@@ -235,9 +235,6 @@ h2 {
     .images .image__picture {
       background-color: #dddddd;
       width: 100%; }
-    .images .image__title {
-      margin-top: 10px;
-      font-size: 18px; }
     .images .image__tags {
       margin-top: 15px;
       width: 100%; }
@@ -272,8 +269,6 @@ h2 {
   .modal__content {
     max-width: 90%;
     max-height: 90%;
-    min-width: 60%;
-    min-height: 60%;
     background-color: white;
     border-radius: 5px;
     padding: 30px 25px;

@@ -5,6 +5,7 @@ import {IoMdAdd} from "react-icons/io";
 import {GoLocation} from "react-icons/go";
 import {IoMdShareAlt} from "react-icons/io";
 import {RiInformationFill} from "react-icons/ri";
+import {motion, AnimatePresence} from "framer-motion";
 
 import {photoURL, key, unsplash} from "../../utils/utils";
 
@@ -30,11 +31,38 @@ export default function Imagemodal({id, setImageId}) {
     }
   };
 
+  const containerAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
+
+  const modalAnimation = {
+    hidden: {
+      y: "-100%",
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <Fragment>
+    <AnimatePresence>
       {id.length > 0 && imageInfo.id && (
-        <div className="modal" onClick={closeModal}>
-          <section className="modal__content">
+        <motion.div
+          className="modal"
+          onClick={closeModal}
+          variants={containerAnimation}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+        >
+          <motion.section className="modal__content" variants={modalAnimation}>
             <div className="modal__header">
               <div className="modal__header-author">
                 <img
@@ -99,9 +127,9 @@ export default function Imagemodal({id, setImageId}) {
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+          </motion.section>
+        </motion.div>
       )}
-    </Fragment>
+    </AnimatePresence>
   );
 }
