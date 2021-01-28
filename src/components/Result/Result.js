@@ -11,6 +11,8 @@ export default function Result(props) {
   const [trending, setTrending] = useState("");
 
   useEffect(() => {
+    setImages([]);
+
     axios
       .get(unsplashURL + props.match.params.keyWord, {
         headers: {

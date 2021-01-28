@@ -233,6 +233,7 @@ h2 {
     .images .image:first-child {
       margin-top: 0; }
     .images .image__picture {
+      background-color: #dddddd;
       width: 100%; }
     .images .image__title {
       margin-top: 10px;
