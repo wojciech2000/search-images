@@ -272,6 +272,8 @@ h2 {
   .modal__content {
     max-width: 90%;
     max-height: 90%;
+    min-width: 60%;
+    min-height: 60%;
     background-color: white;
     border-radius: 5px;
     padding: 30px 25px;
@@ -332,7 +334,8 @@ h2 {
     .modal__footer-location {
       display: flex;
       align-items: center;
-      font-size: 14px; }
+      font-size: 14px;
+      margin-right: 10px; }
       .modal__footer-location-icon {
         margin-right: 10px; }
     .modal__footer-options > * {

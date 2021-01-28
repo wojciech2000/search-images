@@ -17,6 +17,8 @@ $option-property: color, border-color;
   &__content {
     max-width: 90%;
     max-height: 90%;
+    min-width: 60%;
+    min-height: 60%;
     background-color: white;
     border-radius: 5px;
     padding: 30px 25px;
@@ -105,6 +107,7 @@ $option-property: color, border-color;
       display: flex;
       align-items: center;
       font-size: 14px;
+      margin-right: 10px;
 
       &-icon {
         margin-right: 10px;

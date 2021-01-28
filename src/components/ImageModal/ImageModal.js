@@ -75,8 +75,19 @@ export default function Imagemodal({id, setImageId}) {
 
             <div className="modal__footer">
               <div className="modal__footer-location">
-                <GoLocation className="modal__footer-location-icon" />{" "}
-                {`${imageInfo.location.city || ""}, ${imageInfo.location.country || ""}`}
+                {/* 1.if there is city or country display location icon
+                    2.if there is city and country add comma between them
+                    3.if there is only city or only country dont add coma
+                */}
+                {(imageInfo.location.city || imageInfo.location.country) && (
+                  <Fragment>
+                    <GoLocation className="modal__footer-location-icon" />
+
+                    {imageInfo.location.city && imageInfo.location.country
+                      ? imageInfo.location.city + ", " + imageInfo.location.country
+                      : imageInfo.location.city || imageInfo.location.country}
+                  </Fragment>
+                )}
               </div>
               <div className="modal__footer-options">
                 <div className="moda__footer-options-share">
