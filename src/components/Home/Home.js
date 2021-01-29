@@ -2,22 +2,25 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import Search from "../Search/Search";
-import {key, searchTheme} from "../../utils/utils";
+import {trendingTags, key, searchTheme} from "../../utils/utils";
 
 export default function Home(props) {
   const [trendings, setTrendings] = useState([]);
-  const [trending, setTrending] = useState("");
+  const [tag, setTag] = useState("");
 
   useEffect(() => {
     axios
-      .get("https://api.unsplash.com/topics?order_by=featured", {
+      .get(trendingTags, {
         headers: {
           Authorization: key,
         },
       })
       .then(res => {
-        const tags = res.data.map(image => image.slug);
-        tags.splice(0, 5);
+        const tags = res.data.map(image => ({
+          id: image.id,
+          title: image.slug,
+        }));
+
         setTrendings(tags);
       })
       .catch(err => {
@@ -39,17 +42,13 @@ export default function Home(props) {
             Powred by creators everywhere.
           </aside>
         </header>
-        <Search props={props} theme={searchTheme.home} trending={trending} />
+        <Search props={props} theme={searchTheme.home} tag={tag} />
         <aside className="home__trendings">
           Trending:
           {trendings.length > 0 &&
-            trendings.map((trending, id) => (
-              <span
-                key={id}
-                className="home__trending"
-                onClick={e => setTrending(e.target.textContent)}
-              >
-                {trending}
+            trendings.map(({id, title}) => (
+              <span key={id} className="home__trending" onClick={e => setTag(e.target.textContent)}>
+                {title}
               </span>
             ))}
         </aside>

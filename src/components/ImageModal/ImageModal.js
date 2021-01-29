@@ -120,10 +120,10 @@ export default function Imagemodal({id, setImageId}) {
               <div className="modal__footer-options">
                 <div className="moda__footer-options-share">
                   <IoMdShareAlt />
-                  Share
+                  <span>Share</span>
                 </div>
                 <div className="moda__footer-options-info">
-                  <RiInformationFill /> Info
+                  <RiInformationFill /> <span>Info</span>
                 </div>
               </div>
             </div>

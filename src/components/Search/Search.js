@@ -3,9 +3,9 @@ import React, {useEffect, useState, useRef} from "react";
 import {BsSearch} from "react-icons/bs";
 import {IoMdClose} from "react-icons/io";
 
-import {unsplashURL, key, searchTheme} from "../../utils/utils";
+import {unsplashURL, unsplashURLASampleImages, key, searchTheme} from "../../utils/utils";
 
-export default function App({props, theme, trending = ""}) {
+export default function App({props, theme, tag = ""}) {
   const [keyWord, setKeyWord] = useState("");
   const [foundImages, setFountImages] = useState([]);
 
@@ -28,23 +28,25 @@ export default function App({props, theme, trending = ""}) {
   };
 
   useEffect(() => {
-    unsplashRequest(trending);
-  }, [trending]);
+    unsplashRequest(tag);
+  }, [tag]);
 
   useEffect(() => {
     keyWord.length <= 3 && setFountImages([]);
 
     if (keyWord.length >= 3) {
       axios
-        .get(unsplashURL + keyWord, {
+        .get(unsplashURLASampleImages + keyWord, {
           headers: {
             Authorization: key,
           },
         })
         .then(res => {
-          const descriptions = res.data.results.map(
-            image => image.description || image.alt_description,
-          );
+          const descriptions = res.data.results.map(image => ({
+            id: image.id,
+            description: image.description || image.alt_description,
+          }));
+
           setFountImages(descriptions);
         })
         .catch(err => {
@@ -56,6 +58,11 @@ export default function App({props, theme, trending = ""}) {
 
   const handleOnChange = e => {
     setKeyWord(e.target.value);
+  };
+
+  const eraseKeyWord = () => {
+    setKeyWord("");
+    search.current.focus();
   };
 
   const handleOnSubmit = e => {
@@ -112,7 +119,7 @@ export default function App({props, theme, trending = ""}) {
                   ? "search__search-erase"
                   : "search__search-erase search__search-erase--result"
               }
-              onClick={() => setKeyWord("")}
+              onClick={eraseKeyWord}
             >
               <IoMdClose />
             </div>
@@ -124,7 +131,7 @@ export default function App({props, theme, trending = ""}) {
           }
         >
           {foundImages.length
-            ? foundImages.map((image, id) => (
+            ? foundImages.map(({id, description}) => (
                 <div
                   key={id}
                   className={
@@ -134,7 +141,7 @@ export default function App({props, theme, trending = ""}) {
                   }
                   onClick={handleOnSubmit}
                 >
-                  {image}
+                  {description}
                 </div>
               ))
             : keyWord.length >= 3 && (

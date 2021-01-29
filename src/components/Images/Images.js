@@ -9,8 +9,8 @@ export default function Images({images}) {
     <Fragment>
       <div className="images">
         {images.length > 0 &&
-          images.map((image, id) => (
-            <section key={id} className="image" onClick={() => setImageId(image.id)}>
+          images.map(image => (
+            <section key={image.id} className="image" onClick={() => setImageId(image.id)}>
               <img
                 src={image.urls.regular}
                 alt={image.alt_description}

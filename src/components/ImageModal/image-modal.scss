@@ -2,6 +2,11 @@ $option-color: #4d4c4c;
 $option-transition: all 0.2s ease;
 $option-property: color, border-color;
 
+.option-hover-effect {
+  color: black;
+  border-color: black;
+}
+
 .modal {
   position: fixed;
   width: 100vw;
@@ -72,10 +77,10 @@ $option-property: color, border-color;
       color: $option-color;
       transition: $option-transition;
       transition-property: $option-property;
+      user-select: none;
 
       &:hover {
-        color: black;
-        border-color: black;
+        @extend .option-hover-effect;
       }
     }
 
@@ -127,9 +132,12 @@ $option-property: color, border-color;
         transition-property: $option-property;
         font-size: 14px;
 
+        span {
+          user-select: none;
+        }
+
         &:hover {
-          color: black;
-          border-color: black;
+          @extend .option-hover-effect;
         }
 
         &:first-child {

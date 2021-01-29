@@ -31,17 +31,23 @@
   &__related-tags-tag {
     margin: 0 5px;
     border-radius: 5px;
+    padding: 0 15px;
     min-width: 150px;
-    border: 1px solid #ccc;
+    height: 100%;
+    border: 1px solid #d1d1d1;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
     cursor: pointer;
-    transition: $hover-link-transition;
+    color: #767676;
+    transition: all 0.2s ease;
+    transition-property: color, border-color;
+    white-space: nowrap;
 
     &:hover {
-      color: $hover-link-color;
+      color: black;
+      border-color: black;
     }
 
     &:first-child {

@@ -8,7 +8,7 @@ import Images from "../Images/Images";
 export default function Result(props) {
   const [tags, setTags] = useState([]);
   const [images, setImages] = useState([]);
-  const [trending, setTrending] = useState("");
+  const [tag, setTag] = useState("");
 
   useEffect(() => {
     setImages([]);
@@ -34,19 +34,20 @@ export default function Result(props) {
 
   return (
     <div className="result">
-      <Search props={props} theme={searchTheme.result} trending={trending} />
+      <Search props={props} theme={searchTheme.result} tag={tag} />
 
       <h2 className="result__title">{props.match.params.keyWord}</h2>
       <div className="result__related-tags">
         {tags.length > 0 &&
           tags.map((tag, id) => (
-            <span
-              className="result__related-tags-tag"
-              key={id}
-              onClick={e => setTrending(e.target.textContent)}
-            >
-              {tag}
-            </span>
+            <div key={id}>
+              <span
+                className="result__related-tags-tag"
+                onClick={e => setTag(e.target.textContent)}
+              >
+                {tag}
+              </span>
+            </div>
           ))}
         <div className="realted-tags-fadeout-effect"></div>
       </div>
