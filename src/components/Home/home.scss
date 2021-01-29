@@ -1,7 +1,7 @@
 .home {
   min-width: 100vw;
   min-height: 100vh;
-  background: url("../pictures/lagoon.jpg") no-repeat center / cover;
+  background: url("../pictures/lagoon-small.jpg") no-repeat center / cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
     font-size: 14px;
   }
 
@@ -44,6 +45,8 @@
   }
 
   @media (min-width: 768px) {
+    background-image: url("../pictures/lagoon-medium.jpg");
+
     &__wrapper {
       margin: 0 0 300px 0;
       width: 700px;
@@ -52,6 +55,14 @@
   }
 
   @media (min-width: 1440px) {
+    &__wrapper {
+      width: 1000px;
+    }
+  }
+
+  @media (min-width: 2440px) {
+    background-image: url("../pictures/lagoon-large.jpg");
+
     &__wrapper {
       width: 1000px;
     }

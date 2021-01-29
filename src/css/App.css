@@ -42,7 +42,7 @@ h2 {
 .home {
   min-width: 100vw;
   min-height: 100vh;
-  background: url("../pictures/lagoon.jpg") no-repeat center/cover;
+  background: url("../pictures/lagoon-small.jpg") no-repeat center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,6 +63,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
     font-size: 14px; }
   .home__trending {
     cursor: pointer;
@@ -72,13 +73,20 @@ h2 {
     .home__trending:hover {
       color: #ccc; }
   @media (min-width: 768px) {
-    .home__wrapper {
-      margin: 0 0 300px 0;
-      width: 700px;
-      background-color: transparent; } }
+    .home {
+      background-image: url("../pictures/lagoon-medium.jpg"); }
+      .home__wrapper {
+        margin: 0 0 300px 0;
+        width: 700px;
+        background-color: transparent; } }
   @media (min-width: 1440px) {
     .home__wrapper {
       width: 1000px; } }
+  @media (min-width: 2440px) {
+    .home {
+      background-image: url("../pictures/lagoon-large.jpg"); }
+      .home__wrapper {
+        width: 1000px; } }
 
 .search {
   display: flex;
