@@ -56,7 +56,8 @@ h2 {
     margin-bottom: 20px;
     font-family: "Lato", sans-serif; }
   .home__aside {
-    margin-bottom: 20px; }
+    margin-bottom: 25px;
+    line-height: 35px; }
   .home__trendings {
     margin-top: 30px;
     width: 100%;

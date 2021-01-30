@@ -53,8 +53,6 @@ export default function Imagemodal({id, setImageId}) {
     },
   };
 
-  imageInfo.id && console.log(imageInfo);
-
   return (
     <AnimatePresence>
       {id.length > 0 && imageInfo.id && (
