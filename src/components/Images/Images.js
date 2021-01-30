@@ -1,4 +1,6 @@
 import React, {Fragment, useState} from "react";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import ImageModal from "../ImageModal/ImageModal";
 
@@ -11,7 +13,8 @@ export default function Images({images}) {
         {images.length > 0 &&
           images.map(image => (
             <section key={image.id} className="image" onClick={() => setImageId(image.id)}>
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src={image.urls.regular}
                 alt={image.alt_description}
                 className="image__picture"

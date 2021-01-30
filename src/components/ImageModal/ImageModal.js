@@ -6,6 +6,8 @@ import {GoLocation} from "react-icons/go";
 import {IoMdShareAlt} from "react-icons/io";
 import {RiInformationFill} from "react-icons/ri";
 import {motion, AnimatePresence} from "framer-motion";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import {photoURL, key, unsplash} from "../../utils/utils";
 
@@ -51,6 +53,8 @@ export default function Imagemodal({id, setImageId}) {
     },
   };
 
+  imageInfo.id && console.log(imageInfo);
+
   return (
     <AnimatePresence>
       {id.length > 0 && imageInfo.id && (
@@ -65,7 +69,8 @@ export default function Imagemodal({id, setImageId}) {
           <motion.section className="modal__content" variants={modalAnimation}>
             <div className="modal__header">
               <div className="modal__header-author">
-                <img
+                <LazyLoadImage
+                  effect="blur"
                   src={imageInfo.user.profile_image.large}
                   className="modal__header-author-picture"
                   alt="author"
@@ -94,7 +99,9 @@ export default function Imagemodal({id, setImageId}) {
             </div>
 
             <div className="modal__image-container">
-              <img
+              <LazyLoadImage
+                effect="blur"
+                visibleByDefault
                 src={imageInfo.urls.regular}
                 className="modal__image"
                 alt={imageInfo.alt_description}
