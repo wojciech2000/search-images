@@ -8,6 +8,8 @@ export default function Home(props) {
   const [trendings, setTrendings] = useState([]);
   const [tag, setTag] = useState("");
 
+  console.log("test commit")
+
   useEffect(() => {
     axios
       .get(trendingTags, {
