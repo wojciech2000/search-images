@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Result from "./components/Result/Result";
 
 export default function App() {
+  console.log('test commit');
   return (
     <div>
       <Router>
